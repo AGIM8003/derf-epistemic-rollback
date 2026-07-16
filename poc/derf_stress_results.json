@@ -1,0 +1,219 @@
+{
+  "framework": "DERF",
+  "script": "derf_stress.py",
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "generated_at": "2026-07-16T17:56:24.194272+00:00",
+  "base_target": {
+    "items": 1000,
+    "agents": 200,
+    "origins": 50
+  },
+  "scalability_curve": [
+    {
+      "scale": {
+        "items": 1000,
+        "agents": 200,
+        "origins": 50
+      },
+      "timing_s": {
+        "build": 0.017375,
+        "closure": 0.000918,
+        "excision": 0.003047,
+        "replay": 0.000865,
+        "total": 0.022678,
+        "per_closure_item_ms": 0.000918
+      },
+      "memory": {
+        "current_bytes": 681651,
+        "peak_bytes": 864883,
+        "peak_mb": 0.8248
+      },
+      "results": {
+        "closure_size": 1000,
+        "excision_count": 1000,
+        "frontier_size": 0,
+        "replayed": 0,
+        "unrecoverable": 1000
+      },
+      "multiplier": 1
+    },
+    {
+      "scale": {
+        "items": 2000,
+        "agents": 400,
+        "origins": 100
+      },
+      "timing_s": {
+        "build": 0.035061,
+        "closure": 0.001827,
+        "excision": 0.009989,
+        "replay": 0.002259,
+        "total": 0.050143,
+        "per_closure_item_ms": 0.000913
+      },
+      "memory": {
+        "current_bytes": 1410565,
+        "peak_bytes": 1779845,
+        "peak_mb": 1.6974
+      },
+      "results": {
+        "closure_size": 2000,
+        "excision_count": 2000,
+        "frontier_size": 0,
+        "replayed": 0,
+        "unrecoverable": 2000
+      },
+      "multiplier": 2
+    },
+    {
+      "scale": {
+        "items": 5000,
+        "agents": 1000,
+        "origins": 250
+      },
+      "timing_s": {
+        "build": 0.089404,
+        "closure": 0.005076,
+        "excision": 0.048227,
+        "replay": 0.004148,
+        "total": 0.149387,
+        "per_closure_item_ms": 0.001015
+      },
+      "memory": {
+        "current_bytes": 3683339,
+        "peak_bytes": 4649579,
+        "peak_mb": 4.4342
+      },
+      "results": {
+        "closure_size": 5000,
+        "excision_count": 5000,
+        "frontier_size": 0,
+        "replayed": 0,
+        "unrecoverable": 5000
+      },
+      "multiplier": 5
+    },
+    {
+      "scale": {
+        "items": 10000,
+        "agents": 2000,
+        "origins": 500
+      },
+      "timing_s": {
+        "build": 0.177657,
+        "closure": 0.009756,
+        "excision": 0.174785,
+        "replay": 0.007904,
+        "total": 0.374236,
+        "per_closure_item_ms": 0.000976
+      },
+      "memory": {
+        "current_bytes": 6894792,
+        "peak_bytes": 8823128,
+        "peak_mb": 8.4144
+      },
+      "results": {
+        "closure_size": 10000,
+        "excision_count": 10000,
+        "frontier_size": 0,
+        "replayed": 0,
+        "unrecoverable": 10000
+      },
+      "multiplier": 10
+    }
+  ],
+  "bottleneck_operation": "build",
+  "bottleneck_rationale": "At 1\u00d7 base scale, 'build' dominates wall time among measured ops; growth curve shows which op degrades fastest under scale-up.",
+  "growth_by_operation": {
+    "build": [
+      {
+        "multiplier": 1,
+        "seconds": 0.017375,
+        "vs_1x": 1.0
+      },
+      {
+        "multiplier": 2,
+        "seconds": 0.035061,
+        "vs_1x": 2.018
+      },
+      {
+        "multiplier": 5,
+        "seconds": 0.089404,
+        "vs_1x": 5.146
+      },
+      {
+        "multiplier": 10,
+        "seconds": 0.177657,
+        "vs_1x": 10.225
+      }
+    ],
+    "closure": [
+      {
+        "multiplier": 1,
+        "seconds": 0.000918,
+        "vs_1x": 1.0
+      },
+      {
+        "multiplier": 2,
+        "seconds": 0.001827,
+        "vs_1x": 1.99
+      },
+      {
+        "multiplier": 5,
+        "seconds": 0.005076,
+        "vs_1x": 5.529
+      },
+      {
+        "multiplier": 10,
+        "seconds": 0.009756,
+        "vs_1x": 10.627
+      }
+    ],
+    "excision": [
+      {
+        "multiplier": 1,
+        "seconds": 0.003047,
+        "vs_1x": 1.0
+      },
+      {
+        "multiplier": 2,
+        "seconds": 0.009989,
+        "vs_1x": 3.278
+      },
+      {
+        "multiplier": 5,
+        "seconds": 0.048227,
+        "vs_1x": 15.828
+      },
+      {
+        "multiplier": 10,
+        "seconds": 0.174785,
+        "vs_1x": 57.363
+      }
+    ],
+    "replay": [
+      {
+        "multiplier": 1,
+        "seconds": 0.000865,
+        "vs_1x": 1.0
+      },
+      {
+        "multiplier": 2,
+        "seconds": 0.002259,
+        "vs_1x": 2.612
+      },
+      {
+        "multiplier": 5,
+        "seconds": 0.004148,
+        "vs_1x": 4.795
+      },
+      {
+        "multiplier": 10,
+        "seconds": 0.007904,
+        "vs_1x": 9.138
+      }
+    ]
+  },
+  "pass": true
+}

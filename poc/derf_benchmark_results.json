@@ -1,0 +1,196 @@
+{
+  "framework": "DERF",
+  "harness": "derf_benchmark",
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "disclaimer": "PoC benchmark only — not production, not peer reviewed",
+  "timestamp_utc": "2026-07-16T17:56:23.136119+00:00",
+  "python_version": "3.14.4",
+  "attack_strategies_available": 10,
+  "scenarios": [
+    {
+      "name": "single_node_rollback",
+      "size": "small",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 0.237,
+      "memory_bytes_peak": 5049,
+      "memory_kb_peak": 4.93,
+      "details": {
+        "closure_size": 1
+      }
+    },
+    {
+      "name": "empty_graph_noop",
+      "size": "small",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 0.021,
+      "memory_bytes_peak": 2952,
+      "memory_kb_peak": 2.88,
+      "details": {
+        "closure_size": 0
+      }
+    },
+    {
+      "name": "cycle_detection",
+      "size": "small",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 0.042,
+      "memory_bytes_peak": 4066,
+      "memory_kb_peak": 3.97,
+      "details": {
+        "cycles_found": 1
+      }
+    },
+    {
+      "name": "partial_observability_barrier",
+      "size": "medium",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 0.115,
+      "memory_bytes_peak": 8100,
+      "memory_kb_peak": 7.91,
+      "details": {
+        "downstream_excised": true,
+        "excision_count": 4
+      }
+    },
+    {
+      "name": "concurrent_triple_retraction",
+      "size": "medium",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 0.171,
+      "memory_bytes_peak": 13730,
+      "memory_kb_peak": 13.41,
+      "details": {
+        "closure_size": 9,
+        "origins": 3
+      }
+    },
+    {
+      "name": "adversarial_10_strategies_blocked",
+      "size": "medium",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 2.671,
+      "memory_bytes_peak": 34187,
+      "memory_kb_peak": 33.39,
+      "details": {
+        "strategies": 10,
+        "all_blocked": true
+      }
+    },
+    {
+      "name": "recontamination_rejected",
+      "size": "medium",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 0.164,
+      "memory_bytes_peak": 6852,
+      "memory_kb_peak": 6.69,
+      "details": {
+        "rejection_reasons": 6
+      }
+    },
+    {
+      "name": "scale_55_agents_500_items",
+      "size": "large",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 17.468,
+      "memory_bytes_peak": 1118281,
+      "memory_kb_peak": 1092.07,
+      "details": {
+        "agents": 55,
+        "items": 675,
+        "chains": 343
+      }
+    },
+    {
+      "name": "performance_500_node_closure",
+      "size": "large",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 8.405,
+      "memory_bytes_peak": 440904,
+      "memory_kb_peak": 430.57,
+      "details": {
+        "nodes": 500,
+        "closure_size": 500,
+        "pipeline_ms": 1.75
+      }
+    },
+    {
+      "name": "performance_200_node_full_pipeline",
+      "size": "large",
+      "expected_pass": true,
+      "actual_pass": true,
+      "correct": true,
+      "execution_time_ms": 3.269,
+      "memory_bytes_peak": 175960,
+      "memory_kb_peak": 171.84,
+      "details": {
+        "nodes": 200,
+        "closure_size": 150
+      }
+    }
+  ],
+  "metrics": {
+    "correctness_rate": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "correct": 10,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "total": 10
+  },
+  "by_size": {
+    "small": {
+      "count": 3,
+      "mean_time_ms": 0.1,
+      "mean_memory_kb": 3.93
+    },
+    "medium": {
+      "count": 4,
+      "mean_time_ms": 0.78,
+      "mean_memory_kb": 15.35
+    },
+    "large": {
+      "count": 3,
+      "mean_time_ms": 9.714,
+      "mean_memory_kb": 564.83
+    }
+  },
+  "scalability_projection": {
+    "baseline_ms": 9.714,
+    "baseline_reference": "mean of large scenarios",
+    "assumption": "linear O(n) extrapolation from measured closure/excision times",
+    "projections": {
+      "10x": 97.14,
+      "100x": 971.4,
+      "1000x": 9714.0
+    },
+    "projected_items": {
+      "10x": 5000,
+      "100x": 50000,
+      "1000x": 500000
+    }
+  },
+  "memory_profile": {
+    "largest_scenario": "scale_55_agents_500_items",
+    "peak_memory_bytes": 1118281,
+    "peak_memory_kb": 1092.07
+  }
+}

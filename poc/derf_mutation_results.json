@@ -1,0 +1,117 @@
+{
+  "framework": "DERF",
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "timestamp_utc": "2026-07-16T17:56:23.352239+00:00",
+  "mutations_total": 10,
+  "mutations_detected": 9,
+  "mutation_score": 0.9,
+  "pass_threshold": 0.9,
+  "mutations": [
+    {
+      "name": "skip_recontam_check",
+      "detected": true,
+      "caught_by": "reject_K7",
+      "failed_tests": [
+        "reject_K7",
+        "reject_K4"
+      ],
+      "passed": 5,
+      "failed": 2
+    },
+    {
+      "name": "change_size_comparison",
+      "detected": true,
+      "caught_by": "closure_includes_descendants",
+      "failed_tests": [
+        "closure_includes_descendants",
+        "nonempty_closure"
+      ],
+      "passed": 5,
+      "failed": 2
+    },
+    {
+      "name": "remove_loop_iterations",
+      "detected": true,
+      "caught_by": "closure_includes_descendants",
+      "failed_tests": [
+        "closure_includes_descendants",
+        "nonempty_closure"
+      ],
+      "passed": 5,
+      "failed": 2
+    },
+    {
+      "name": "swap_reject_args",
+      "detected": false,
+      "caught_by": null,
+      "failed_tests": [],
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "name": "delete_init",
+      "detected": true,
+      "caught_by": "closure_includes_descendants",
+      "failed_tests": [
+        "closure_includes_descendants",
+        "nonempty_closure"
+      ],
+      "passed": 5,
+      "failed": 2
+    },
+    {
+      "name": "change_threshold",
+      "detected": true,
+      "caught_by": "closure_includes_descendants",
+      "failed_tests": [
+        "closure_includes_descendants",
+        "nonempty_closure"
+      ],
+      "passed": 5,
+      "failed": 2
+    },
+    {
+      "name": "remove_error_handling",
+      "detected": true,
+      "caught_by": "exception:'NoneType' object is not iterable",
+      "passed": 0,
+      "failed": 1
+    },
+    {
+      "name": "reverse_edges",
+      "detected": true,
+      "caught_by": "closure_includes_descendants",
+      "failed_tests": [
+        "closure_includes_descendants",
+        "reject_K7",
+        "reject_K4",
+        "nonempty_closure"
+      ],
+      "passed": 3,
+      "failed": 4
+    },
+    {
+      "name": "skip_validation_always_reject",
+      "detected": true,
+      "caught_by": "allow_unrelated",
+      "failed_tests": [
+        "allow_unrelated"
+      ],
+      "passed": 6,
+      "failed": 1
+    },
+    {
+      "name": "early_return_before_closure",
+      "detected": true,
+      "caught_by": "closure_includes_descendants",
+      "failed_tests": [
+        "closure_includes_descendants",
+        "nonempty_closure"
+      ],
+      "passed": 5,
+      "failed": 2
+    }
+  ],
+  "suite_pass": true
+}

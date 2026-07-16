@@ -1,0 +1,58 @@
+{
+  "service_name": "derf-engine",
+  "framework": "DERF",
+  "version": "2.2.0",
+  "author": "Haxhijaha, Agim",
+  "orcid": "0009-0002-3234-7765",
+  "minimum_viable_deployment": {
+    "compute": "2 vCPU",
+    "memory": "2-4 GiB",
+    "storage": "20 GiB SSD (graph + audit log)",
+    "network": "HTTPS ingress + private VPC for inter-service mTLS"
+  },
+  "dependencies": [
+    "Python 3.11+ stdlib runtime (reference PoC)",
+    "structured JSON log sink",
+    "TLS-terminating reverse proxy"
+  ],
+  "environment_variables": [
+    "DERF_ENV=staging|production",
+    "DERF_LOG_LEVEL=INFO",
+    "DERF_AUDIT_PATH=/var/log/derf-engine",
+    "DERF_MAX_BATCH=1000"
+  ],
+  "health_check_endpoint": "/health",
+  "api_base_path": "/api/v1/derf",
+  "estimated_latency_p99": "50-200ms p99 (closure on ~1k items)",
+  "estimated_throughput": "20-80 revocation jobs/min (single node)",
+  "scaling_model": "horizontal",
+  "security_requirements": [
+    "TLS 1.3",
+    "mTLS for inter-service",
+    "signed audit events",
+    "least-privilege service account"
+  ],
+  "monitoring": {
+    "metrics": [
+      "request_latency_ms",
+      "jobs_completed_total",
+      "error_rate",
+      "peak_memory_mb",
+      "bottleneck_proxy:build"
+    ],
+    "alerts": [
+      "p99_latency > 2x baseline",
+      "error_rate > 1%",
+      "memory > 80% of limit"
+    ],
+    "log_format": "structured JSON"
+  },
+  "stress_basis": {
+    "1x_total_seconds": 0.022646,
+    "1x_peak_mb": 0.8247,
+    "bottleneck_operation": "build",
+    "note": "Graph build / provenance ingest dominates at stress scale"
+  },
+  "estimated_monthly_cost_usd": "$50-150/month (AWS/GCP single-node equivalent)",
+  "disclaimer": "Order-of-magnitude estimates from PoC stress tests; not a vendor quote."
+}

@@ -1,0 +1,202 @@
+{
+  "framework": "DERF",
+  "gate": "REALITY_GATE",
+  "spec_version": "PUBLICATION_HARDENING_PROTOCOL",
+  "blueprint_version": "2.0.0",
+  "python_version": "3.14.4",
+  "timestamp": "2026-07-16T17:56:23.223795+00:00",
+  "run_count": 3,
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "disclaimer": "PoC Reality Gate demonstrator only — not production, not peer reviewed, not formal verification",
+  "timestamp_utc": "2026-07-16T17:56:23.223805+00:00",
+  "total_gate_execution_seconds": 0.007726,
+  "tests": [
+    {
+      "name": "scale_50_agents_500_items_100_chains",
+      "passed": true,
+      "timing_ms": 4.372,
+      "details": {
+        "agents": 55,
+        "items": 660,
+        "dependency_chains": 343,
+        "closure_size": 31
+      },
+      "error": ""
+    },
+    {
+      "name": "concurrent_triple_retraction",
+      "passed": true,
+      "timing_ms": 0.065,
+      "details": {
+        "origins": [
+          "K_A",
+          "K_B",
+          "K_C"
+        ],
+        "closure_size": 9,
+        "closure_matches_expected": true
+      },
+      "error": ""
+    },
+    {
+      "name": "partial_observability_barrier_excision",
+      "passed": true,
+      "timing_ms": 0.037,
+      "details": {
+        "blind_agent": "agent_blind",
+        "downstream_excised": true,
+        "local_registry_empty": true,
+        "excision_order": [
+          "K4_peer",
+          "K3_downstream",
+          "K1_origin",
+          "K2_derived"
+        ]
+      },
+      "error": ""
+    },
+    {
+      "name": "adversarial_10_injection_strategies",
+      "passed": true,
+      "timing_ms": 0.802,
+      "details": {
+        "strategies_tested": 10,
+        "all_blocked": true,
+        "attacks": [
+          {
+            "strategy": "relabel",
+            "blocked": true,
+            "reasons": 3
+          },
+          {
+            "strategy": "split",
+            "blocked": true,
+            "reasons": 1
+          },
+          {
+            "strategy": "rephrase",
+            "blocked": true,
+            "reasons": 1
+          },
+          {
+            "strategy": "indirect_citation",
+            "blocked": true,
+            "reasons": 7
+          },
+          {
+            "strategy": "transitive_reference",
+            "blocked": true,
+            "reasons": 6
+          },
+          {
+            "strategy": "temporal_replay",
+            "blocked": true,
+            "reasons": 8
+          },
+          {
+            "strategy": "synthetic_rederivation",
+            "blocked": true,
+            "reasons": 5
+          },
+          {
+            "strategy": "authority_spoofing",
+            "blocked": true,
+            "reasons": 3
+          },
+          {
+            "strategy": "partial_overlap",
+            "blocked": true,
+            "reasons": 7
+          },
+          {
+            "strategy": "collaborative_injection",
+            "blocked": true,
+            "reasons": 6
+          }
+        ]
+      },
+      "error": ""
+    },
+    {
+      "name": "performance_500_node_graph",
+      "passed": true,
+      "timing_ms": 2.307,
+      "details": {
+        "nodes": 500,
+        "closure_ms": 0.196,
+        "excise_ms": 0.351,
+        "replay_ms": 0.142,
+        "closure_size": 500,
+        "excised": 500,
+        "replayed": 0
+      },
+      "error": ""
+    },
+    {
+      "name": "edge_empty_graph",
+      "passed": true,
+      "timing_ms": 0.006,
+      "details": {
+        "closure_size": 0
+      },
+      "error": ""
+    },
+    {
+      "name": "edge_single_node",
+      "passed": true,
+      "timing_ms": 0.017,
+      "details": {
+        "origins": [
+          "K_only"
+        ],
+        "closure_size": 1,
+        "closure": [
+          "K_only"
+        ],
+        "quarantined": [],
+        "excision_order": [
+          "K_only"
+        ],
+        "excised_count": 1,
+        "replay": {
+          "frontier_size": 0,
+          "replayed": [],
+          "unrecoverable": [
+            "K_only"
+          ]
+        }
+      },
+      "error": ""
+    },
+    {
+      "name": "edge_circular_deps_rejected",
+      "passed": true,
+      "timing_ms": 0.016,
+      "details": {
+        "cycles_found": 1,
+        "sample_cycle": [
+          "X",
+          "Y",
+          "X"
+        ]
+      },
+      "error": ""
+    },
+    {
+      "name": "edge_already_retracted_item",
+      "passed": true,
+      "timing_ms": 0.013,
+      "details": {
+        "retracted_count": 1
+      },
+      "error": ""
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "GATE_VERDICT": "PASS"
+}

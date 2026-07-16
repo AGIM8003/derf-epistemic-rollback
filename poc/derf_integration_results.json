@@ -1,0 +1,31 @@
+{
+  "framework": "DERF",
+  "generated_at": "2026-07-16T17:56:23.298625+00:00",
+  "results": [
+    {
+      "name": "empty_input",
+      "pass": true
+    },
+    {
+      "name": "single_item",
+      "pass": true
+    },
+    {
+      "name": "typical_cascade",
+      "pass": true
+    },
+    {
+      "name": "large_scale_120",
+      "pass": true
+    },
+    {
+      "name": "error_handling",
+      "pass": true
+    },
+    {
+      "name": "contamination_no_dependents",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

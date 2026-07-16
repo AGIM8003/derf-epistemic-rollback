@@ -1,0 +1,100 @@
+{
+  "framework": "DERF",
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "disclaimer": "PoC replication evidence only \u2014 not production",
+  "timestamp_utc": "2026-07-16T17:56:22.864975+00:00",
+  "primary_style": "dag_bfs",
+  "alternative_style": "matrix_warshall",
+  "alt": {
+    "implementation": "matrix_warshall",
+    "contaminated_origin": "K1",
+    "causal_closure": [
+      "K1",
+      "K3",
+      "K4",
+      "K5",
+      "K6",
+      "K7"
+    ],
+    "excision_order": [
+      "K7",
+      "K5",
+      "K6",
+      "K3",
+      "K4",
+      "K1"
+    ],
+    "excision_set": [
+      "K1",
+      "K3",
+      "K4",
+      "K5",
+      "K6",
+      "K7"
+    ],
+    "replay": {
+      "K7": "UNRECOVERABLE",
+      "K5": "REPLAYED_FROM_CLEAN",
+      "K6": "UNRECOVERABLE",
+      "K3": "UNRECOVERABLE",
+      "K4": "UNRECOVERABLE",
+      "K1": "UNRECOVERABLE"
+    },
+    "recontamination_rejection": {
+      "K4": true,
+      "K7": true,
+      "K2": false
+    },
+    "recontamination_blocked": true
+  },
+  "reference": {
+    "implementation": "dag_bfs_reference",
+    "contaminated_origin": "K1",
+    "causal_closure": [
+      "K1",
+      "K3",
+      "K4",
+      "K5",
+      "K6",
+      "K7"
+    ],
+    "excision_order": [
+      "K7",
+      "K5",
+      "K6",
+      "K3",
+      "K4",
+      "K1"
+    ],
+    "excision_set": [
+      "K1",
+      "K3",
+      "K4",
+      "K5",
+      "K6",
+      "K7"
+    ],
+    "replay": {
+      "K7": "UNRECOVERABLE",
+      "K5": "REPLAYED_FROM_CLEAN",
+      "K6": "UNRECOVERABLE",
+      "K3": "UNRECOVERABLE",
+      "K4": "UNRECOVERABLE",
+      "K1": "UNRECOVERABLE"
+    },
+    "recontamination_rejection": {
+      "K4": true,
+      "K7": true,
+      "K2": false
+    },
+    "recontamination_blocked": true
+  },
+  "comparison": {
+    "same_excision_set": true,
+    "same_replay": true,
+    "same_recontamination_block": true,
+    "implementations_agree": true
+  },
+  "replication_pass": true
+}

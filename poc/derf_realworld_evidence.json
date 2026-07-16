@@ -1,0 +1,121 @@
+{
+  "framework": "DERF",
+  "script": "derf_realworld.py",
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "generated_at": "2026-07-16T17:56:23.530847+00:00",
+  "scenario": {
+    "incident_class": "GDPR_Art17_erasure_cascade_in_AI_training_graph",
+    "modeled_on": "Public incident class: foundational dataset contamination / retraction with slow manual downstream notification (months).",
+    "fields": [
+      "genomics",
+      "clinical_trials",
+      "epidemiology",
+      "hospital_CDS"
+    ],
+    "contamination_type": "Training corpus contains patient SNPs linkable to EHR identifiers; Art. 17 erasure + Art. 19 recipient notification required."
+  },
+  "graph_before": {
+    "agents": 7,
+    "items": 11,
+    "roles": {
+      "inst_biobank_nordic": "Nordic Clinical Biobank",
+      "inst_genomics_lab": "Academic Genomics Lab (variant association)",
+      "inst_trial_site_eu": "EU Multi-Centre Cardiology Trial",
+      "inst_hospital_cds": "Tertiary Hospital Clinical Decision Support",
+      "inst_epi_surveillance": "National Epidemiology Surveillance Unit",
+      "inst_meta_analysis": "Consortium Meta-Analysis Group",
+      "inst_imaging_lab": "Cardiac Imaging Lab (independent)"
+    }
+  },
+  "derf_pipeline": {
+    "contamination_origin": "DS_SURROGATE_GENOME_CORPUS_2019",
+    "causal_closure_size": 9,
+    "causal_closure_items": [
+      "BRIEF_POP_RISK_MAP",
+      "CDS_RULE_CARDIO_PRS",
+      "DS_SURROGATE_GENOME_CORPUS_2019",
+      "INTERIM_ANALYSIS_Q3",
+      "META_CARDIO_2024",
+      "MODEL_POLYGENIC_CARDIO_V3",
+      "PAPER_GWAS_CARDIO_2021",
+      "PATIENT_COHORT_FLAGGED_1847",
+      "PROTOCOL_AMEND_PRSMATCH"
+    ],
+    "excision_order": [
+      "META_CARDIO_2024",
+      "PATIENT_COHORT_FLAGGED_1847",
+      "DS_SURROGATE_GENOME_CORPUS_2019",
+      "INTERIM_ANALYSIS_Q3",
+      "PROTOCOL_AMEND_PRSMATCH",
+      "CDS_RULE_CARDIO_PRS",
+      "PAPER_GWAS_CARDIO_2021",
+      "MODEL_POLYGENIC_CARDIO_V3",
+      "BRIEF_POP_RISK_MAP"
+    ],
+    "replay": {
+      "frontier_size": 2,
+      "replayed_count": 1,
+      "unrecoverable_count": 8,
+      "unrecoverable": [
+        "DS_SURROGATE_GENOME_CORPUS_2019",
+        "MODEL_POLYGENIC_CARDIO_V3",
+        "PROTOCOL_AMEND_PRSMATCH",
+        "INTERIM_ANALYSIS_Q3",
+        "CDS_RULE_CARDIO_PRS",
+        "PATIENT_COHORT_FLAGGED_1847",
+        "BRIEF_POP_RISK_MAP",
+        "META_CARDIO_2024"
+      ]
+    },
+    "recontamination_blocked": true,
+    "recontamination_reasons": [
+      "Source DS_SURROGATE_GENOME_CORPUS_2019 is on retracted-source registry",
+      "Alternate path traverses excised item PAPER_GWAS_CARDIO_2021",
+      "Alternate path traverses excised item MODEL_POLYGENIC_CARDIO_V3",
+      "Alternate path PAPER_GWAS_CARDIO_2021 transitively depends on DS_SURROGATE_GENOME_CORPUS_2019",
+      "Alternate path MODEL_POLYGENIC_CARDIO_V3 transitively depends on DS_SURROGATE_GENOME_CORPUS_2019"
+    ],
+    "clean_frontier": [
+      "DS_QC_CERTIFICATE",
+      "MRI_PHENOTYPE_ATLAS",
+      "PAPER_GWAS_CARDIO_2021_replayed"
+    ],
+    "clinical_artifacts_on_clean_frontier": [
+      "MRI_PHENOTYPE_ATLAS"
+    ],
+    "institutions_in_closure": [
+      "inst_biobank_nordic",
+      "inst_epi_surveillance",
+      "inst_genomics_lab",
+      "inst_hospital_cds",
+      "inst_meta_analysis",
+      "inst_trial_site_eu"
+    ]
+  },
+  "manual_baseline_today": {
+    "method": "manual_retraction_notices_and_email_trees",
+    "typical_latency_days": "60-180",
+    "downstream_miss_rate_estimate": "0.30-0.60",
+    "institutions_notified_first_wave": 2,
+    "closure_items_typically_missed": 3,
+    "clinical_cds_rules_often_left_active": true,
+    "art19_recipient_enumeration": "incomplete_without_provenance_graph"
+  },
+  "comparative_advantage": {
+    "derf_excises_full_closure_immediately": true,
+    "manual_latency_days": "60-180",
+    "derf_blocks_reinjection_via_paper_model_path": true,
+    "manual_often_misses_cds_rules": true,
+    "art19_recipient_set_from_closure": [
+      "inst_biobank_nordic",
+      "inst_epi_surveillance",
+      "inst_genomics_lab",
+      "inst_hospital_cds",
+      "inst_meta_analysis",
+      "inst_trial_site_eu"
+    ],
+    "what_existing_approaches_miss": "Retraction notices stop at the paper; CDS rules, trial interim analyses, and meta-analyses that transitively depend on the corpus remain active for months without a causal closure engine."
+  },
+  "pass": true
+}

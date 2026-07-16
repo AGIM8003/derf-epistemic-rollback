@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Please cite this independent research publication using the metadata below."
+title: "Decentralized Epistemic Rollback Fabric: Proof-Graded Causal Revocation, Clean Replay, and Recontamination Prevention for Cross-Domain Agent Networks"
+type: software
+authors:
+  - family-names: "Haxhijaha"
+    given-names: "Agim"
+    orcid: "https://orcid.org/0009-0002-3234-7765"
+    affiliation: "Independent Researcher"
+    email: "agim@vertogroup.ai"
+version: "2.3.0"
+date-released: "2026-07-16"
+license: "CC-BY-NC-ND-4.0"
+url: "https://github.com/AGIM8003/decentralized-epistemic-rollback-fabric"
+abstract: >-
+  Distributed agent and research systems embed revoked or unlawful data into papers, models, and clinical decision aids; ordinary software rollback does not remove epistemic descendants. Existing practice relies on slow, incomplete manual retraction notices. We propose Decentralized Epistemic Rollback Fabric (DERF): proof-graded causal closure, barrier-ordered excision, clean-frontier replay, and recontamination rejection under partial observability. This Public Research Edition (v2.3.0) packages an importable research library (from derf import DERFEngine), a Reality Gate demonstrator, benchmark and mutation evidence, an independent alternative implementation with replication pass, a GDPR-class genomics contamination scenario, stress tests to 10,000 knowledge items, standards mapping (GDPR Articles 17 and 19, NIST AI RMF, EU AI Act data governance), deployment manifests, competitive positioning against Apache Atlas, OpenLineage, and machine unlearning approaches, and an honest gap register documenting residual limits. Formal mathematical foundations and a TLA+ sketch are included as research artifacts; they are not mechanically verified certificates. This independent technical blueprint does not claim production readiness, peer review, independent human replication, patentability, or legal compliance opinion. It is released so others can evaluate, cite, and attempt to falsify the CORE claim combination.
+keywords:
+  - "epistemic-rollback"
+  - "causal-revocation"
+  - "agent-memory-unlearning"
+  - "clean-replay"
+  - "recontamination-prevention"
+  - "distributed-agents"
+  - "proof-graded-assurance"
+  - "epoch-fencing"
+  - "influence-graphs"
+  - "ai-governance"

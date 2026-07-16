@@ -1,0 +1,371 @@
+{
+  "framework": "DERF",
+  "author": "Agim Haxhijaha",
+  "orcid": "0009-0002-3234-7765",
+  "disclaimer": "PoC only — not production, not peer reviewed",
+  "timestamp_utc": "2026-07-16T17:56:23.412838+00:00",
+  "phases": {
+    "0_before": {
+      "agents": {
+        "agent_source": {
+          "role": "Primary Evidence Collector",
+          "depends_on": [],
+          "knowledge_count": 2
+        },
+        "agent_interpreter": {
+          "role": "Signal Interpreter",
+          "depends_on": [
+            "agent_source"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_corroborator": {
+          "role": "Independent Corroborator",
+          "depends_on": [
+            "agent_source"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_synthesiser": {
+          "role": "Knowledge Synthesiser",
+          "depends_on": [
+            "agent_interpreter",
+            "agent_corroborator"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_decision": {
+          "role": "Decision Authority",
+          "depends_on": [
+            "agent_synthesiser"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_auditor": {
+          "role": "Compliance Auditor",
+          "depends_on": [
+            "agent_decision",
+            "agent_source"
+          ],
+          "knowledge_count": 1
+        }
+      },
+      "items": {
+        "K1_raw_observation": {
+          "agent_id": "agent_source",
+          "claim": "Sensor reading: temperature anomaly at node A",
+          "source_ids": [],
+          "derived": false,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K2_calibration": {
+          "agent_id": "agent_source",
+          "claim": "Calibration certificate valid until 2027",
+          "source_ids": [],
+          "derived": false,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K3_interpreted": {
+          "agent_id": "agent_interpreter",
+          "claim": "Anomaly indicates potential fault condition",
+          "source_ids": [
+            "K1_raw_observation",
+            "K2_calibration"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K4_corroboration": {
+          "agent_id": "agent_corroborator",
+          "claim": "Secondary sensor confirms anomaly at node A",
+          "source_ids": [
+            "K1_raw_observation"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K5_synthesis": {
+          "agent_id": "agent_synthesiser",
+          "claim": "Fault condition confirmed by dual-source agreement",
+          "source_ids": [
+            "K3_interpreted",
+            "K4_corroboration"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K6_decision": {
+          "agent_id": "agent_decision",
+          "claim": "DECISION: Initiate emergency shutdown protocol",
+          "source_ids": [
+            "K5_synthesis"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K7_audit_trail": {
+          "agent_id": "agent_auditor",
+          "claim": "Audit record: shutdown decision traceable to source",
+          "source_ids": [
+            "K6_decision",
+            "K2_calibration"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        }
+      },
+      "retracted_sources": []
+    },
+    "1_contamination": {
+      "retracted_item": "K1_raw_observation",
+      "reason": "Primary source retracted by publisher"
+    },
+    "2_causal_closure": {
+      "origin": "K1_raw_observation",
+      "closure_size": 6,
+      "closure_items": [
+        "K1_raw_observation",
+        "K3_interpreted",
+        "K4_corroboration",
+        "K5_synthesis",
+        "K6_decision",
+        "K7_audit_trail"
+      ]
+    },
+    "3_excision": {
+      "order": [
+        "K7_audit_trail",
+        "K1_raw_observation",
+        "K4_corroboration",
+        "K6_decision",
+        "K5_synthesis",
+        "K3_interpreted"
+      ],
+      "excised_count": 6
+    },
+    "4_replay": {
+      "frontier_size": 1,
+      "frontier_items": [
+        "K2_calibration"
+      ],
+      "replayed": [
+        {
+          "original": "K3_interpreted",
+          "replayed_as": "K3_interpreted_replayed",
+          "claim": "[REPLAYED (partial)] Anomaly indicates potential fault condition",
+          "partial": true,
+          "clean_sources": [
+            "K2_calibration"
+          ],
+          "lost_sources": [
+            "K1_raw_observation"
+          ]
+        },
+        {
+          "original": "K7_audit_trail",
+          "replayed_as": "K7_audit_trail_replayed",
+          "claim": "[REPLAYED (partial)] Audit record: shutdown decision traceable to source",
+          "partial": true,
+          "clean_sources": [
+            "K2_calibration"
+          ],
+          "lost_sources": [
+            "K6_decision"
+          ]
+        }
+      ],
+      "unrecoverable": [
+        "K1_raw_observation",
+        "K4_corroboration",
+        "K5_synthesis",
+        "K6_decision"
+      ]
+    },
+    "5_recontamination": {
+      "attempted_item": "reinject_K1_raw_observation",
+      "claim": "Sensor reading: temperature anomaly at node A",
+      "alternate_path": [
+        "K4_corroboration"
+      ],
+      "blocked": true,
+      "rejection_reasons": [
+        "Source K1_raw_observation is on retracted-source registry",
+        "Alternate path traverses excised item K4_corroboration",
+        "Alternate path K4_corroboration transitively depends on K1_raw_observation"
+      ],
+      "reinjector_accepted": false
+    },
+    "6_after": {
+      "agents": {
+        "agent_source": {
+          "role": "Primary Evidence Collector",
+          "depends_on": [],
+          "knowledge_count": 2
+        },
+        "agent_interpreter": {
+          "role": "Signal Interpreter",
+          "depends_on": [
+            "agent_source"
+          ],
+          "knowledge_count": 2
+        },
+        "agent_corroborator": {
+          "role": "Independent Corroborator",
+          "depends_on": [
+            "agent_source"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_synthesiser": {
+          "role": "Knowledge Synthesiser",
+          "depends_on": [
+            "agent_interpreter",
+            "agent_corroborator"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_decision": {
+          "role": "Decision Authority",
+          "depends_on": [
+            "agent_synthesiser"
+          ],
+          "knowledge_count": 1
+        },
+        "agent_auditor": {
+          "role": "Compliance Auditor",
+          "depends_on": [
+            "agent_decision",
+            "agent_source"
+          ],
+          "knowledge_count": 2
+        }
+      },
+      "items": {
+        "K1_raw_observation": {
+          "agent_id": "agent_source",
+          "claim": "Sensor reading: temperature anomaly at node A",
+          "source_ids": [],
+          "derived": false,
+          "contaminated": true,
+          "excised": true,
+          "retracted": true
+        },
+        "K2_calibration": {
+          "agent_id": "agent_source",
+          "claim": "Calibration certificate valid until 2027",
+          "source_ids": [],
+          "derived": false,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K3_interpreted": {
+          "agent_id": "agent_interpreter",
+          "claim": "Anomaly indicates potential fault condition",
+          "source_ids": [
+            "K1_raw_observation",
+            "K2_calibration"
+          ],
+          "derived": true,
+          "contaminated": true,
+          "excised": true,
+          "retracted": false
+        },
+        "K4_corroboration": {
+          "agent_id": "agent_corroborator",
+          "claim": "Secondary sensor confirms anomaly at node A",
+          "source_ids": [
+            "K1_raw_observation"
+          ],
+          "derived": true,
+          "contaminated": true,
+          "excised": true,
+          "retracted": false
+        },
+        "K5_synthesis": {
+          "agent_id": "agent_synthesiser",
+          "claim": "Fault condition confirmed by dual-source agreement",
+          "source_ids": [
+            "K3_interpreted",
+            "K4_corroboration"
+          ],
+          "derived": true,
+          "contaminated": true,
+          "excised": true,
+          "retracted": false
+        },
+        "K6_decision": {
+          "agent_id": "agent_decision",
+          "claim": "DECISION: Initiate emergency shutdown protocol",
+          "source_ids": [
+            "K5_synthesis"
+          ],
+          "derived": true,
+          "contaminated": true,
+          "excised": true,
+          "retracted": false
+        },
+        "K7_audit_trail": {
+          "agent_id": "agent_auditor",
+          "claim": "Audit record: shutdown decision traceable to source",
+          "source_ids": [
+            "K6_decision",
+            "K2_calibration"
+          ],
+          "derived": true,
+          "contaminated": true,
+          "excised": true,
+          "retracted": false
+        },
+        "K3_interpreted_replayed": {
+          "agent_id": "agent_interpreter",
+          "claim": "[REPLAYED (partial)] Anomaly indicates potential fault condition",
+          "source_ids": [
+            "K2_calibration"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        },
+        "K7_audit_trail_replayed": {
+          "agent_id": "agent_auditor",
+          "claim": "[REPLAYED (partial)] Audit record: shutdown decision traceable to source",
+          "source_ids": [
+            "K2_calibration"
+          ],
+          "derived": true,
+          "contaminated": false,
+          "excised": false,
+          "retracted": false
+        }
+      },
+      "retracted_sources": [
+        "K1_raw_observation"
+      ]
+    }
+  },
+  "summary": {
+    "contamination_origin": "K1_raw_observation",
+    "closure_size": 6,
+    "excised_count": 6,
+    "replayed_count": 2,
+    "unrecoverable_count": 4,
+    "recontamination_blocked": true,
+    "pipeline_success": true
+  }
+}
