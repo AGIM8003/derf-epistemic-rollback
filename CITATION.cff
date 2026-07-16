@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite this independent research publication using the metadata below."
 title: "Decentralized Epistemic Rollback Fabric: Proof-Graded Causal Revocation, Clean Replay, and Recontamination Prevention for Cross-Domain Agent Networks"
 type: software
-doi: "10.5281/zenodo.21400285"
+doi: "10.5281/zenodo.21400965"
 authors:
   - family-names: "Haxhijaha"
     given-names: "Agim"
@@ -27,3 +27,4 @@ keywords:
   - "epoch-fencing"
   - "influence-graphs"
   - "ai-governance"
+
