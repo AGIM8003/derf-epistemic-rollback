@@ -1,0 +1,11 @@
+{
+  "schema_id": "FINAL_STATUS/v1",
+  "project": "derf-epistemic-rollback",
+  "finite_status": "SOFTWARE_PARTIAL_SPEC1_CODE_FOLDER_STARTED",
+  "github": "https://github.com/AGIM8003/derf-epistemic-rollback",
+  "visibility": "PUBLIC",
+  "publication": "ALREADY_PUBLISHED_ZENODO_SCHOLAR",
+  "canonical_code": "CODE FOLDER/src/derf",
+  "blueprint": "DERF_v2.3.0_PUBLIC_RESEARCH_EDITION.md",
+  "novelty_claimed": false
+}
